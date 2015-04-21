@@ -7,20 +7,6 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_Assert as PHPUnit;
 
-class Network {
-    private $people = [];
-
-    public function subscribe($person) {
-        array_push($this->people, $person);
-    }
-
-    public function broadcast($message) {
-        foreach($this->people as $listener) {
-          $listener->hear($message);
-        }
-    }
-}
-
 class Shouty {
     private $people = [];
     private $network;
@@ -73,6 +59,20 @@ class Person {
 
     public function messagesHeard() {
         return $this->messagesHeard;
+    }
+}
+
+class Network {
+    private $people = [];
+
+    public function subscribe($person) {
+        array_push($this->people, $person);
+    }
+
+    public function broadcast($message) {
+        foreach($this->people as $listener) {
+          $listener->hear($message);
+        }
     }
 }
 
