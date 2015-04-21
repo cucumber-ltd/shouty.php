@@ -1,6 +1,7 @@
 {
-    "require": {
-        "behat/behat": "3.0.15"
+    "require-dev": {
+        "behat/behat": "3.0.15",
+        "phpunit/phpunit": "4.6.4"
     },
     "minimum-stability": "dev",
     "config": {
