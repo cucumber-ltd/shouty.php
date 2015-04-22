@@ -34,12 +34,3 @@ Feature: Hear shout
     And Phil is in Balliol College
     When Sally shouts "You around Phil?"
     Then Phil should hear "You around Phil?"
-
-  Scenario: Phil hears Jeff's shout after Sally's shout
-    Given Phil is around
-    When Sally shouts "one"
-    And Jeff shouts "two"
-    Then Phil should hear:
-      | message |
-      | one     |
-      | two     |
