@@ -9,5 +9,8 @@
     "minimum-stability": "dev",
     "config": {
         "bin-dir": "bin/"
+    },
+    "require": {
+        "slim/slim": "dev-master"
     }
 }
