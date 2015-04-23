@@ -10,9 +10,11 @@
     <input name="message" placeholder="What's happening?">
 </form>
 <ul id="messages">
-  <?php foreach($messages as $message) { ?>
-    <li><?php $message ?></li>
-  <?php } ?>
+  <?php
+  foreach($messages as $message) {
+    echo "<li>$message</li>";
+  }
+  ?>
 </ul>
 </body>
 </html>
