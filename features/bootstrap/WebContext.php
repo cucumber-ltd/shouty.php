@@ -17,13 +17,11 @@ use PHPUnit_Framework_Assert as PHPUnit;
 /**
  * Defines application features from the specific context.
  */
-class WebContext implements Context, SnippetAcceptingContext
-{
+class WebContext implements Context, SnippetAcceptingContext {
     private $locations = [];
     private $session;
 
-    public function __construct()
-    {
+    public function __construct() {
         $driver = new GoutteDriver();
         $this->session = new Session($driver);
         $this->session->start();
@@ -32,16 +30,14 @@ class WebContext implements Context, SnippetAcceptingContext
     /**
      * @BeforeScenario
      */
-    public function before()
-    {
+    public function before() {
         if(file_exists('store')) { unlink('store'); }
     }
 
     /**
      * @Given the following locations:
      */
-    public function theFollowingLocations(TableNode $locations)
-    {
+    public function theFollowingLocations(TableNode $locations) {
         foreach ($locations->getHash() as $location) {
             $this->locations[$location['name']] = [doubleval($location['lat']), doubleval($location['lon'])];
         }
@@ -50,8 +46,7 @@ class WebContext implements Context, SnippetAcceptingContext
     /**
      * @Given /^(\w+) is in (.+)$/
      */
-    public function personIsInLocation($personName, $locationName)
-    {
+    public function personIsInLocation($personName, $locationName) {
         $location = $this->locations[$locationName];
         $this->session->visit('http://localhost:8000/people/' . $personName . '?lat=' . $location[0] . '&lon=' . $location[1]);
     }
@@ -59,8 +54,7 @@ class WebContext implements Context, SnippetAcceptingContext
     /**
      * @When /^(\w+) shouts$/
      */
-    public function personShouts($personName)
-    {
+    public function personShouts($personName) {
         $this->session->visit('http://localhost:8000/people/' . $personName);
         $this->session->getPage()->find('css', '#message')->setValue('Can you hear me?');
         $this->session->getPage()->find('css', '#shout')->press();
@@ -69,8 +63,7 @@ class WebContext implements Context, SnippetAcceptingContext
     /**
      * @When /^(\w+) shouts "(.*)"$/
      */
-    public function personShoutsMessage($personName, $message)
-    {
+    public function personShoutsMessage($personName, $message) {
         $this->session->visit('http://localhost:8000/people/' . $personName);
         $this->session->getPage()->find('css', '#message')->setValue($message);
         $this->session->getPage()->find('css', '#shout')->press();
@@ -79,8 +72,7 @@ class WebContext implements Context, SnippetAcceptingContext
     /**
      * @Then /^(\w+) should not hear anything$/
      */
-    public function personShouldNotHearAnything($personName)
-    {
+    public function personShouldNotHearAnything($personName) {
         $this->session->visit('http://localhost:8000/people/' . $personName);
         $lis = $this->session->getPage()->findAll('css', '#messages li');
         $heardMessages = array_map(function($li) { return $li->getText(); }, $lis);
@@ -90,8 +82,7 @@ class WebContext implements Context, SnippetAcceptingContext
     /**
      * @Then /^(\w+) should hear "(.*)"$/
      */
-    public function personShouldHearMessage($personName, $expectedMessage)
-    {
+    public function personShouldHearMessage($personName, $expectedMessage) {
         $this->session->visit('http://localhost:8000/people/' . $personName);
         $lis = $this->session->getPage()->findAll('css', '#messages li');
         $heardMessages = array_map(function($li) { return $li->getText(); }, $lis);

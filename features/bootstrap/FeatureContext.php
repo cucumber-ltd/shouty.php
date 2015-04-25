@@ -13,21 +13,18 @@ use Shouty\Shouty;
 /**
  * Defines application features from the specific context.
  */
-class FeatureContext implements Context, SnippetAcceptingContext
-{
+class FeatureContext implements Context, SnippetAcceptingContext {
     private $locations = [];
     private $shouty;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->shouty = new Shouty();
     }
 
     /**
      * @Given the following locations:
      */
-    public function theFollowingLocations(TableNode $locations)
-    {
+    public function theFollowingLocations(TableNode $locations) {
         foreach ($locations->getHash() as $location) {
             $this->locations[$location['name']] = [doubleval($location['lat']), doubleval($location['lon'])];
         }
@@ -36,8 +33,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     /**
      * @Given /^(\w+) is in (.+)$/
      */
-    public function personIsInLocation($personName, $locationName)
-    {
+    public function personIsInLocation($personName, $locationName) {
         $location = $this->locations[$locationName];
         $this->shouty->personIsIn($personName, $location);
     }
@@ -45,32 +41,28 @@ class FeatureContext implements Context, SnippetAcceptingContext
     /**
      * @When /^(\w+) shouts$/
      */
-    public function personShouts($personName)
-    {
+    public function personShouts($personName) {
         $this->shouty->personShouts($personName, 'Can you hear me?');
     }
 
     /**
      * @When /^(\w+) shouts "(.*)"$/
      */
-    public function personShoutsMessage($personName, $message)
-    {
+    public function personShoutsMessage($personName, $message) {
         $this->shouty->personShouts($personName, $message);
     }
 
     /**
      * @Then /^(\w+) should not hear anything$/
      */
-    public function personShouldNotHearAnything($personName)
-    {
+    public function personShouldNotHearAnything($personName) {
         PHPUnit::assertEquals([], $this->shouty->heardBy($personName));
     }
 
     /**
      * @Then /^(\w+) should hear "(.*)"$/
      */
-    public function personShouldHearMessage($personName, $expectedMessage)
-    {
+    public function personShouldHearMessage($personName, $expectedMessage) {
         PHPUnit::assertEquals([$expectedMessage], $this->shouty->heardBy($personName));
     }
 }
