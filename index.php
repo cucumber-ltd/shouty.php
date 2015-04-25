@@ -31,10 +31,12 @@ $app->get('/people/:personName', function ($personName) use ($app, $shouty) {
     $lat = $app->request->params('lat');
     $lon = $app->request->params('lon');
     $shouty = $app->environment['shouty'];
-    $shouty->personIsIn($personName, array($lat, $lon));
+    if($lat && $lon) {
+        $shouty->personIsIn($personName, array($lat, $lon));
+    }
     $app->render('person.php', array(
-      'personName' => $personName,
-      'messages' => $shouty->heardBy($personName)
+        'personName' => $personName,
+        'messages' => $shouty->heardBy($personName)
     ));
 });
 

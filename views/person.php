@@ -7,7 +7,8 @@
 <h1><?php echo $personName; ?></h1>
 <form action="/messages" method="POST">
     <input name="personName" value="<?php echo $personName; ?>" type="hidden">
-    <input name="message" placeholder="What's happening?">
+    <input id="message" name="message" placeholder="What's happening?">
+    <input id="shout" type="submit" value="Shout">
 </form>
 <ul id="messages">
   <?php
