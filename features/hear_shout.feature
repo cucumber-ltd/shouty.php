@@ -22,8 +22,8 @@ Feature: Hear shout
   Scenario: Suzanne doesn't hear Freddie who is far away
     Given "Suzanne" is at "St John's College"
     But "Freddie" is at "Trafalgar Square"
-    When Freddie shouts
-    Then Suzanne doesn't hear the message
+    When "Freddie" shouts
+    Then "Suzanne" doesn't hear the message
 
   @manual
   Scenario: Oh I dunno...
