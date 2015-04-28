@@ -18,11 +18,13 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     }
 
     /**
-     * @Given :arg1 is at :arg2
+     * @Given :personName is at :locationName
      */
-    public function isAt($arg1, $arg2)
+    public function personIsAt($personName, $locationName)
     {
-        throw new PendingException();
+        // St John's college: 51.756073,-1.25904,17
+        $geoLocation = $locations[$locationName];
+        $shouty->setPersonLocation($personName, $geoLocation);
     }
 
     /**
