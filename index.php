@@ -9,6 +9,8 @@ $app = new \Slim\Slim(array(
     'log.enabled' => true
 ));
 
+$shouty = null;
+
 $app->hook('slim.before', function() use ($app) {
     if(file_exists('store')) {
         $shouty = unserialize(file_get_contents('store'));
