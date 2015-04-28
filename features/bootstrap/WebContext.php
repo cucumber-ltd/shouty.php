@@ -36,4 +36,62 @@ class WebContext implements Context, SnippetAcceptingContext {
             $this->locations[$location['name']] = [doubleval($location['lat']), doubleval($location['lon'])];
         }
     }
+
+    /**
+     * @Given /^(\w+) is in (.+)$/
+     */
+    public function personIsInLocation($personName, $locationName) {
+        $location = $this->locations[$locationName];
+        $this->session->visit(
+          'http://localhost:8000/people/' .
+          $personName .
+          '?lat=' . $location[0] .
+          '&lon=' . $location[1]
+        );
+    }
+
+    /**
+     * @When /^(\w+) shouts "(.*)"$/
+     */
+    public function personShoutsMessage($personName, $message) {
+        $this->session->visit('http://localhost:8000/people/' . $personName);
+        $page = $this->session->getPage();
+        $page->findById('message')->setValue($message);
+        $page->findById('shout')->press();
+    }
+
+    /**
+     * @When /^(\w+) shouts$/
+     */
+    public function personShouts($personName) {
+      $this->personShoutsMessage($personName, 'some message');
+    }
+
+    /**
+     * @Then /^(\w+) should hear "(.*)"$/
+     */
+    public function personShouldHearMessage($personName, $expectedMessage) {
+        PHPUnit::assertEquals(
+          [$expectedMessage],
+          $this->getMessagesForPerson($personName)
+        );
+    }
+
+    /**
+     * @Then /^(\w+) should not hear anything$/
+     */
+    public function personShouldNotHearAnything($personName) {
+        PHPUnit::assertEquals(
+          [],
+          $this->getMessagesForPerson($personName)
+        );
+    }
+
+    private function getMessagesForPerson($personName) {
+        $this->session->visit('http://localhost:8000/people/' . $personName);
+        $page = $this->session->getPage();
+        $lis = $page->findAll('css', "#messages li");
+        $heardMessages = array_map(function($li) { return $li->getText(); }, $lis);
+        return $heardMessages;
+    }
 }
