@@ -3,3 +3,4 @@ composer.phar
 bin/
 vendor/
 store
+.DS_Store
