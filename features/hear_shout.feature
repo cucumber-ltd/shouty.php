@@ -13,6 +13,11 @@ Feature: Hear shout
   - Do hears shouts disappear when we move away?
   - Do people need an account to shout? Or to listen?
   - How much precision do we need for distance?
+  - Should people hear their own messages?
+
+  Scenario: Suzanne does not hear herself
+    When "Suzanne" shouts
+    Then "Suzanne" doesn't hear anything
 
   Scenario: Suzanne hears Bobbie who is nearby
     Given "Suzanne" is at "St John's College"
