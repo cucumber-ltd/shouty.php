@@ -29,6 +29,21 @@ Or simply [download](https://github.com/cucumber-ltd/shouty.php/releases) a zip 
 * Get dependencies: `composer install` or `./composer.phar install` if you did a local install
 * Run Behat: `./bin/behat`
 
+#### Troubleshooting
+
+You might get this error:
+
+```
+Fatal error: Maximum function nesting level of '100' reached, aborting!
+```
+
+In that case, you need to add the following to your `php.ini` file:
+
+```
+xdebug.max_nesting_level = 1000
+```
+
+
 ### Brainstorm capabilities
 
 * Who are the main stakeholders?
