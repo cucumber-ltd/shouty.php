@@ -1,9 +1,16 @@
 {
-    "require": {
-        "behat/behat": "3.0.15"
+    "require-dev": {
+        "behat/behat": "3.0.15",
+        "phpunit/phpunit": "4.6.4",
+        "behat/mink": "~1.7@dev",
+        "behat/mink-extension": "~2.0@dev",
+        "behat/mink-goutte-driver": "~1.1@dev"
     },
     "minimum-stability": "dev",
     "config": {
         "bin-dir": "bin/"
+    },
+    "require": {
+        "slim/slim": "dev-master"
     }
 }
