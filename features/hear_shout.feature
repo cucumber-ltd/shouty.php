@@ -14,6 +14,7 @@ Feature: Hear shout
   - Do people need an account to shout? Or to listen?
   - How much precision do we need for distance?
   - Should people hear their own messages?
+  - Should two people in the same location hear each other?
 
   Scenario: Suzanne does not hear herself
     When "Suzanne" shouts
@@ -22,6 +23,12 @@ Feature: Hear shout
   Scenario: Suzanne hears Bobbie who is nearby
     Given "Suzanne" is at "St John's College"
     But "Bobbie" is at "Balliol College"
+    When "Bobbie" shouts
+    Then "Suzanne" hears the shout
+
+  Scenario: Suzanne hears Bobbie who is in the same location
+    Given "Suzanne" is at "St John's College"
+    But "Bobbie" is at "St John's College"
     When "Bobbie" shouts
     Then "Suzanne" hears the shout
 

@@ -14,8 +14,8 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     private $shouty;
     private $locations = array(
       "St John's College" => [51.756073,  -1.25904],
-      "Trafalgar Square"  => [51.508039,  -0.128069],
-      "Balliol College"   => [51.7550014, -1.2580754]
+      "Balliol College"   => [51.7550014, -1.2580754],
+      "Trafalgar Square"  => [51.508039,  -0.128069]
     );
     private $theShout;
 
