@@ -12,6 +12,9 @@ use Shouty\Shouty;
 
 class FeatureContext implements Context, SnippetAcceptingContext {
     private $shouty;
+    private $locations = array(
+      "St John's College" => [51.756073, -1.25904]
+    );
 
     public function __construct() {
         $this->shouty = new Shouty();
@@ -22,9 +25,8 @@ class FeatureContext implements Context, SnippetAcceptingContext {
      */
     public function personIsAt($personName, $locationName)
     {
-        // St John's college: 51.756073,-1.25904,17
-        $geoLocation = $locations[$locationName];
-        $shouty->setPersonLocation($personName, $geoLocation);
+        $geoLocation = $this->locations[$locationName];
+        $this->shouty->setPersonLocation($personName, $geoLocation);
     }
 
     /**
