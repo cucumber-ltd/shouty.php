@@ -13,7 +13,8 @@ use Shouty\Shouty;
 class FeatureContext implements Context, SnippetAcceptingContext {
     private $shouty;
     private $locations = array(
-      "St John's College" => [51.756073, -1.25904]
+      "St John's College" => [51.756073, -1.25904],
+      "Trafalgar Square" => [51.508039, -0.128069]
     );
 
     public function __construct() {
@@ -30,11 +31,11 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     }
 
     /**
-     * @When :arg1 shouts
+     * @When :personName shouts
      */
-    public function shouts($arg1)
+    public function personShouts($personName)
     {
-        throw new PendingException();
+        $this->shouty->personShouts($personName, 'Anyone around?');
     }
 
     /**
