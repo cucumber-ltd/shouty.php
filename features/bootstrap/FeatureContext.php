@@ -39,10 +39,10 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     }
 
     /**
-     * @Then :arg1 doesn't hear the message
+     * @Then :arg1 doesn't hear anything
      */
-    public function doesnTHearTheMessage($arg1)
+    public function personDoesntHearAnything($personName)
     {
-        throw new PendingException();
+        PHPUnit::assertEquals(array(), $this->shouty->heardMessages($personName));
     }
 }

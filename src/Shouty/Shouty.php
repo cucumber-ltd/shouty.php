@@ -10,4 +10,8 @@ class Shouty {
     function personShouts($personName, $messageText) {
 
     }
+
+    function heardMessages($personName) {
+        return array();
+    }
 }

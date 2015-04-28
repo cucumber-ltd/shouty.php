@@ -23,7 +23,7 @@ Feature: Hear shout
     Given "Suzanne" is at "St John's College"
     But "Freddie" is at "Trafalgar Square"
     When "Freddie" shouts
-    Then "Suzanne" doesn't hear the message
+    Then "Suzanne" doesn't hear anything
 
   @manual
   Scenario: Oh I dunno...
