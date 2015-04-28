@@ -13,9 +13,11 @@ use Shouty\Shouty;
 class FeatureContext implements Context, SnippetAcceptingContext {
     private $shouty;
     private $locations = array(
-      "St John's College" => [51.756073, -1.25904],
-      "Trafalgar Square" => [51.508039, -0.128069]
+      "St John's College" => [51.756073,  -1.25904],
+      "Trafalgar Square"  => [51.508039,  -0.128069],
+      "Balliol College"   => [51.7550014, -1.2580754]
     );
+    private $theShout;
 
     public function __construct() {
         $this->shouty = new Shouty();
@@ -35,7 +37,8 @@ class FeatureContext implements Context, SnippetAcceptingContext {
      */
     public function personShouts($personName)
     {
-        $this->shouty->personShouts($personName, 'Anyone around?');
+        $this->theShout = 'Can you hear me?';
+        $this->shouty->personShouts($personName, $this->theShout);
     }
 
     /**
@@ -44,5 +47,13 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     public function personDoesntHearAnything($personName)
     {
         PHPUnit::assertEquals(array(), $this->shouty->heardMessages($personName));
+    }
+
+    /**
+     * @Then :arg1 hears the shout
+     */
+    public function hearsTheShout($personName)
+    {
+        PHPUnit::assertEquals(array($this->theShout), $this->shouty->heardMessages($personName));
     }
 }

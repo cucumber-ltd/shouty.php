@@ -15,9 +15,10 @@ Feature: Hear shout
   - How much precision do we need for distance?
 
   Scenario: Suzanne hears Bobbie who is nearby
-    Given
-    When
-    Then
+    Given "Suzanne" is at "St John's College"
+    But "Bobbie" is at "Balliol College"
+    When "Bobbie" shouts
+    Then "Suzanne" hears the shout
 
   Scenario: Suzanne doesn't hear Freddie who is far away
     Given "Suzanne" is at "St John's College"
