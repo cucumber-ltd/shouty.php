@@ -43,6 +43,13 @@ In that case, you need to add the following to your `php.ini` file:
 xdebug.max_nesting_level = 1000
 ```
 
+If Behat is not giving you errors, you might want to verify that your `php.ini`
+file has this:
+
+```
+error_reporting = E_ALL | E_STRICT
+display_errors = On
+```
 
 ### Brainstorm capabilities
 
