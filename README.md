@@ -25,6 +25,7 @@ Or simply [download](https://github.com/cucumber-ltd/shouty.php/releases) a zip 
 
 * Install [Composer](https://getcomposer.org/)
 * Get dependencies: `composer install`
+* Start the server: `php -S localhost:8000`
 * Run Behat: `./bin/behat`
 
 ### Brainstorm capabilities
