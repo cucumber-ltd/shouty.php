@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+EXIT_STATUS=0
+echo "Running phpunit..."
+bin/phpunit test || EXIT_STATUS=$?
+echo
+echo "Running behat..."
+bin/behat || EXIT_STATUS=$?
+exit $EXIT_STATUS
