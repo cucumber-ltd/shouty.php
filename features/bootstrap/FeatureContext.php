@@ -19,19 +19,11 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     }
 
     /**
-     * @Given Lucy is at [:xCoord, :yCoord]
+     * @Given :personName is at [:xCoord, :yCoord]
      */
-    public function lucyIsAt($xCoord, $yCoord)
+    public function personIsAt($personName, $xCoord, $yCoord)
     {
-      $this->shouty->setLocation("Lucy", new Coordinate($xCoord, $yCoord));
-    }
-
-    /**
-     * @Given Sean is at [:xCoord, :yCoord]
-     */
-    public function seanIsAt($xCoord, $yCoord)
-    {
-      $this->shouty->setLocation("Sean", new Coordinate($xCoord, $yCoord));
+      $this->shouty->setLocation($personName, new Coordinate($xCoord, $yCoord));
     }
 
     /**
