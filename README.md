@@ -27,7 +27,7 @@ Or simply [download](https://github.com/cucumber-ltd/shouty.php/releases) a zip 
 * Go into the shouty directory: `cd shouty.php`
 * Install [Composer](https://getcomposer.org/) - a package manager for PHP
 * Get dependencies: `composer install` or `./composer.phar install` if you did a local install
-* Run Behat: `./bin/behat`
+* Run the tests: `./test-all`
 
 #### Troubleshooting
 
@@ -51,23 +51,3 @@ error_reporting = E_ALL | E_STRICT
 display_errors = On
 ```
 
-### Brainstorm capabilities
-
-* Who are the main stakeholders?
-* What can people do with the app?
-* What are the main differentiators from other apps?
-
-### Pick one capability
-
-* Define rules
-* Create high level examples (Friends episodes)
-
-Then do this for each example to discover more examples:
-
-* Can you think of a context where the outcome would be different?
-* Are there any other outcomes we haven't thought about?
-
-### Implement one capability. Text UI only.
-
-* Write a Scenario for one of the examples
-* Make it pass!
