@@ -5,15 +5,15 @@ Feature: Hear Shout
   Background:
     Given Lucy is at [0, 0]
 
-  Scenario: In range shout is heard
-    And Sean is at [0, 900]
+  Scenario Outline: Shouts only heard in-range
+    Given Sean is at <shout location>
     When Sean shouts
-    Then Lucy should hear Sean
+    Then Lucy should <hear>
 
-  Scenario: Out of range shout is not heard
-    And Sean is at [0, 1100]
-    When Sean shouts
-    Then Lucy should hear nothing
+    Examples:
+      | shout location | hear         |
+      | [0, 900]       | hear Sean    |
+      | [0, 1100]      | hear nothing |
 
   Scenario: Multiple shouters
     Given people are located at
