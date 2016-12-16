@@ -10,11 +10,13 @@ use PHPUnit_Framework_Assert as PHPUnit;
 use Shouty\Shouty;
 use Shouty\Coordinate;
 
-class FeatureContext implements Context, SnippetAcceptingContext {
+class FeatureContext implements Context, SnippetAcceptingContext
+{
     const ARBITRARY_MESSAGE = 'Hello, world';
     private $shouty;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->shouty = new Shouty();
     }
 
@@ -23,15 +25,15 @@ class FeatureContext implements Context, SnippetAcceptingContext {
      */
     public function personIsAt($personName, $xCoord, $yCoord)
     {
-      $this->shouty->setLocation($personName, new Coordinate($xCoord, $yCoord));
+        $this->shouty->setLocation($personName, new Coordinate($xCoord, $yCoord));
     }
 
     /**
-     * @When Sean shouts
+     * @When :shouterName shouts
      */
-    public function seanShouts()
+    public function shouterShouts($shouterName)
     {
-        $this->shouty->shout("Sean", self::ARBITRARY_MESSAGE);
+        $this->shouty->shout($shouterName, self::ARBITRARY_MESSAGE);
     }
 
     /**
@@ -48,5 +50,15 @@ class FeatureContext implements Context, SnippetAcceptingContext {
     public function lucyShouldHearNothing()
     {
         PHPUnit::assertEquals(0, count($this->shouty->getMessagesHeardBy("Lucy")));
+    }
+
+    /**
+     * @Then :listenerName should not hear :shouterName
+     */
+    public function listenerShouldNotHearShouter($listenerName, $shouterName)
+    {
+        $messages = $this->shouty->getMessagesHeardBy($listenerName);
+
+        PHPUnit::assertFalse(array_key_exists($shouterName, $messages), "Did not expect to hear: " . $shouterName . ", but did!");
     }
 }
