@@ -21,7 +21,7 @@ class Shouty {
 
     foreach ($this->messagesByPersonName as $shouterName => $message) {
       $distance = $this->locationsByPersonName[$listenerName]->distanceFrom($this->locationsByPersonName[$shouterName]);
-      if ($distance < self::MESSAGE_RANGE)
+      if ($distance < self::MESSAGE_RANGE && $listenerName != $shouterName)
         $result[$shouterName] = $message;
     }
     return $result;
