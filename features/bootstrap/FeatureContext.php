@@ -72,4 +72,15 @@ class FeatureContext implements Context, SnippetAcceptingContext
 
         PHPUnit::assertFalse(array_key_exists($shouterName, $messages), "Did not expect to hear: " . $shouterName . ", but did!");
     }
+
+    /**
+     * @Then :listenerName should hear :countOfShouts shouts from :shouterName
+     */
+    public function lucyShouldHearShoutsFromSean($countOfShouts, $listenerName, $shouterName)
+    {
+        $messages = $this->shouty->getMessagesHeardBy($listenerName);
+        $messagesByShouter = $messages[$shouterName];
+
+        PHPUnit::assertEquals(intval($countOfShouts), count($messagesByShouter));
+    }
 }
