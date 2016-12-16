@@ -21,25 +21,6 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given :personName is at [:xCoord, :yCoord]
-     */
-    public function personIsAt($personName, $xCoord, $yCoord)
-    {
-        $this->shouty->setLocation($personName, new Coordinate($xCoord, $yCoord));
-    }
-
-    /**
-     * @Given people are located at
-     */
-    public function peopleAreLocatedAt(TableNode $peopleLocations)
-    {
-        foreach($peopleLocations as $personLocation) {
-            $this->shouty->setLocation($personLocation['name'], new Coordinate($personLocation['x'], $personLocation['y']));
-        }
-
-    }
-
-    /**
      * @When :shouterName shouts
      */
     public function shouterShouts($shouterName)
