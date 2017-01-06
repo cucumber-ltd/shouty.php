@@ -2,5 +2,10 @@ default:
   suites:
     default:
       contexts:
-        - FeatureContext
-        - LocationContext
+        - FeatureContext:
+          - "@shouty"
+        - LocationContext:
+          - "@shouty"
+
+      services:
+        shouty: "Shouty\\Shouty"
