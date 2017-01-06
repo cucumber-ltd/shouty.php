@@ -19,11 +19,19 @@ class LocationContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given :personName is at [:xCoord, :yCoord]
+     * @Transform /\[(\d+), (\d+)\]/
      */
-    public function personIsAt($personName, $xCoord, $yCoord)
+    public function transformCoords($xCoord, $yCoord)
     {
-        $this->shouty->setLocation($personName, new Coordinate($xCoord, $yCoord));
+        return new Coordinate($xCoord, $yCoord);
+    }
+
+    /**
+     * @Given /^(\w+) is at (\[\d+, \d+\])$/
+     */
+    public function personIsAt($personName, Coordinate $coordinate)
+    {
+        $this->shouty->setLocation($personName, $coordinate);
     }
 
     /**
@@ -31,7 +39,7 @@ class LocationContext implements Context, SnippetAcceptingContext
      */
     public function peopleAreLocatedAt(TableNode $peopleLocations)
     {
-        foreach($peopleLocations as $personLocation) {
+        foreach ($peopleLocations as $personLocation) {
             $this->shouty->setLocation($personLocation['name'], new Coordinate($personLocation['x'], $personLocation['y']));
         }
 
