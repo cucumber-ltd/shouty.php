@@ -7,9 +7,6 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use PHPUnit_Framework_Assert as PHPUnit;
 
-require_once 'src/Shouty/Shouty.php';
-require_once 'src/Shouty/Coordinate.php';
-
 use Shouty\Shouty;
 use Shouty\Coordinate;
 

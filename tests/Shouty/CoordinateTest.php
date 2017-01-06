@@ -2,9 +2,6 @@
 
 namespace Shouty;
 
-require_once 'src/Shouty/Shouty.php';
-require_once 'src/Shouty/Coordinate.php';
-
 use PHPUnit\Framework\TestCase;
 use Shouty\Coordinate;
 
